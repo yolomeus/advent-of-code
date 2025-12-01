@@ -2,7 +2,7 @@ from itertools import product
 from operator import add, mul
 from typing import Callable
 
-from util import read_file
+from utils import read_file
 
 
 def concat(a: int, b: int):

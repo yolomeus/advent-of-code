@@ -1,4 +1,4 @@
-from util import read_file
+from utils import read_file
 
 
 def parse_lists(text: str) -> list[list[int]]:

@@ -1,6 +1,6 @@
 import re
 
-from util import read_file
+from utils import read_file
 
 
 def mul_sum(data: str) -> int:

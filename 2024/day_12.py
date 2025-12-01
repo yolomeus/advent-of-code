@@ -1,7 +1,7 @@
 from collections import deque
 from itertools import product
 
-from util import read_file
+from utils import read_file
 
 Matrix = tuple[tuple[int, ...], ...]
 

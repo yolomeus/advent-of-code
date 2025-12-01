@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from util import read_file
+from utils import read_file
 
 
 def is_valid(update: list[str], allowed_after: dict[str, set[str]]) -> bool:

@@ -1,7 +1,7 @@
 from collections import defaultdict
 from itertools import combinations
 
-from util import read_file
+from utils import read_file
 
 
 def subtract(a: tuple[int, int], b: tuple[int, int]) -> tuple[int, int]:

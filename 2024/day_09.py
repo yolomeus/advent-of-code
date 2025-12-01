@@ -1,7 +1,7 @@
 from copy import deepcopy, copy
 from dataclasses import dataclass
 
-from util import read_file
+from utils import read_file
 
 
 @dataclass

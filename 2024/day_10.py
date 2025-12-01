@@ -1,7 +1,7 @@
 from collections import defaultdict
 from itertools import product
 
-from util import read_file
+from utils import read_file
 
 Node = tuple[int, int]
 Matrix = tuple[tuple[int, ...], ...]

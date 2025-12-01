@@ -5,7 +5,7 @@ from typing import Iterable
 
 from tqdm import tqdm
 
-from util import read_file
+from utils import read_file
 
 
 class Direction(Enum):

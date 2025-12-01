@@ -1,7 +1,7 @@
 import time
 from functools import lru_cache
 
-from util import read_file
+from utils import read_file
 
 
 def update(stones):
