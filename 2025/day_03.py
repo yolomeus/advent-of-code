@@ -27,7 +27,7 @@ def compute_joltage_part2(battery_bank: tuple[int, ...]):
     max_joltage = battery_bank[:1]
     rest = battery_bank[1:]
     while rest:
-        num, rest = rest[0], rest[1:]
+        num, *rest = rest
         while (
             max_joltage and num > max_joltage[-1] and len(max_joltage) + len(rest) >= 12
         ):
