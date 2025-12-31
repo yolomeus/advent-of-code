@@ -6,9 +6,9 @@ def parse_list(number_string: str) -> list[int]:
 
 
 def parse_line(line: str):
-    idx, cards = line.split(':')
+    idx, cards = line.split(":")
     idx = int(idx.split()[-1])
-    winning_nums, actual_nums = cards.split('|')
+    winning_nums, actual_nums = cards.split("|")
     return idx, (parse_list(winning_nums), parse_list(actual_nums))
 
 
@@ -18,7 +18,7 @@ def get_num_winners(card):
 
 
 def main():
-    data = read_file_as_lines('data/day_04.txt')
+    data = read_file_as_lines("data/day_04.txt")
     indices, cards = zip(*list(map(parse_line, data)))
     total = 0
     for winning_nums, actual_nums in cards:
@@ -32,7 +32,7 @@ def main():
 
         total += points
 
-    print('part 1:', total)
+    print("part 1:", total)
 
     id_to_card = dict(zip(indices, cards))
     id_to_winners = {i: get_num_winners(card) for i, card in id_to_card.items()}
@@ -45,8 +45,8 @@ def main():
             for k in range(1, num_winners + 1):
                 id_to_num_cards[idx + k] += 1
 
-    print('part 2:', sum(id_to_num_cards.values()))
+    print("part 2:", sum(id_to_num_cards.values()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -25,7 +25,17 @@ def get_sum_numbers(data: List[str], get_number_fn):
 
 
 # part two
-number_strings = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+number_strings = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+]
 number_to_value = {text: i + 1 for i, text in enumerate(number_strings)}
 
 
@@ -79,10 +89,10 @@ def cat_first_and_last_num_or_str(text: str) -> int:
 
 
 def main():
-    data = read_file_as_lines('data/day_01.txt')
+    data = read_file_as_lines("data/day_01.txt")
     print("part 1:", get_sum_numbers(data, cat_first_and_last_num))
     print("part 2:", get_sum_numbers(data, cat_first_and_last_num_or_str))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

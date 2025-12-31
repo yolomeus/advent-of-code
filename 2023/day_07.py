@@ -31,8 +31,16 @@ def high_card(hand: Counter):
     return len(hand) == 5
 
 
-hand_types = [five_of_a_kind, four_of_a_kind, full_house, three_of_a_kind, two_pair, one_pair, high_card]
-card_types = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
+hand_types = [
+    five_of_a_kind,
+    four_of_a_kind,
+    full_house,
+    three_of_a_kind,
+    two_pair,
+    one_pair,
+    high_card,
+]
+card_types = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
 card_type_to_value = {card_type: i for i, card_type in enumerate(card_types)}
 
 
@@ -62,7 +70,7 @@ def parse_data(data):
 
 
 def main():
-    data = read_file_as_lines('data/day_07.txt')
+    data = read_file_as_lines("data/day_07.txt")
     card_to_bid = parse_data(data)
     card_to_bid = sorted(card_to_bid, key=lambda x: x[0])
     _, bids_sorted = zip(*card_to_bid)
@@ -74,5 +82,5 @@ def main():
     print(payout)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

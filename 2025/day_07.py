@@ -3,7 +3,9 @@ from pathlib import Path
 from utils import read_file_as_tuples
 
 
-def compute_next_line(previous_line: tuple[str, ...], splitter_line: tuple[str, ...]) -> tuple[list, int]:
+def compute_next_line(
+    previous_line: tuple[str, ...], splitter_line: tuple[str, ...]
+) -> tuple[list, int]:
     assert len(previous_line) == len(splitter_line)
 
     if "S" in previous_line:

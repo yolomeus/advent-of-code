@@ -4,11 +4,11 @@ from utils import read_file_as_lines
 
 
 def parse_line(line):
-    return list(map(int, line.split(':')[1].split()))
+    return list(map(int, line.split(":")[1].split()))
 
 
 def parse_line_no_spaces(line):
-    return int(''.join(line.split(':')[1].split()))
+    return int("".join(line.split(":")[1].split()))
 
 
 def num_ways_to_win(time, distance):
@@ -21,7 +21,7 @@ def num_ways_to_win(time, distance):
 
 
 def main():
-    data = read_file_as_lines('data/day_06.txt')
+    data = read_file_as_lines("data/day_06.txt")
 
     n_ways_per_game = []
     times = parse_line(data[0])
@@ -29,12 +29,12 @@ def main():
     for time, distance in zip(times, distances):
         n_ways_per_game.append(num_ways_to_win(time, distance))
 
-    print('part 1:', reduce(lambda x, y: x * y, n_ways_per_game))
+    print("part 1:", reduce(lambda x, y: x * y, n_ways_per_game))
 
     single_time = parse_line_no_spaces(data[0])
     single_dist = parse_line_no_spaces(data[1])
-    print('part 2:', num_ways_to_win(single_time, single_dist))
+    print("part 2:", num_ways_to_win(single_time, single_dist))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

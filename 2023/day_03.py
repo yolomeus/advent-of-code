@@ -7,28 +7,30 @@ Matrix = Dict[Position, str]
 
 
 def parse_to_matrix(data: list[str]) -> Matrix:
-    return {(i, j): symbol
-            for i, line in enumerate(data)
-            for j, symbol in enumerate(line)}
+    return {
+        (i, j): symbol for i, line in enumerate(data) for j, symbol in enumerate(line)
+    }
 
 
 def adj_positions(position: Position) -> list[Position]:
     i, j = position
     # hardcoded because I don't want to think about it
-    return [(i, j + 1),
-            (i, j - 1),
-            (i + 1, j),
-            (i - 1, j),
-            (i + 1, j + 1),
-            (i - 1, j - 1),
-            (i - 1, j + 1),
-            (i + 1, j - 1)]
+    return [
+        (i, j + 1),
+        (i, j - 1),
+        (i + 1, j),
+        (i - 1, j),
+        (i + 1, j + 1),
+        (i - 1, j - 1),
+        (i - 1, j + 1),
+        (i + 1, j - 1),
+    ]
 
 
 def is_symbol(position: Position, matrix: Matrix) -> bool:
     i, j = position
-    c = matrix.get((i, j), '.')
-    return not c.isdigit() and c != '.'
+    c = matrix.get((i, j), ".")
+    return not c.isdigit() and c != "."
 
 
 def is_adjacent_to_symbol(position: Position, matrix: Matrix) -> bool:
@@ -36,14 +38,12 @@ def is_adjacent_to_symbol(position: Position, matrix: Matrix) -> bool:
 
 
 def is_part_number(positions: Iterable[Position], matrix: Matrix) -> bool:
-    """A number is a part number if any of its positions is adjacent to a symbol
-    """
+    """A number is a part number if any of its positions is adjacent to a symbol"""
     return any(is_adjacent_to_symbol(position, matrix) for position in positions)
 
 
 def get_nums_as_positions(matrix: Matrix) -> list[list[Position]]:
-    """Represent each n-digit number as a set of positions in the matrix
-    """
+    """Represent each n-digit number as a set of positions in the matrix"""
     number_positions = []
     current_digit_positions = []
     for pos in sorted(matrix):
@@ -61,18 +61,18 @@ def get_nums_as_positions(matrix: Matrix) -> list[list[Position]]:
 
 
 def positions_to_number(positions: Iterable[Position], matrix: Matrix) -> int:
-    num = ''
+    num = ""
     for pos in positions:
         num += matrix[pos]
     return int(num)
 
 
 def get_star_positions(matrix: Matrix) -> list[Position]:
-    return [pos for pos, c in matrix.items() if c == '*']
+    return [pos for pos, c in matrix.items() if c == "*"]
 
 
 def main():
-    data = read_file_as_lines('data/day_03.txt')
+    data = read_file_as_lines("data/day_03.txt")
     matrix = parse_to_matrix(data)
     nums_as_positions = get_nums_as_positions(matrix)
 
@@ -96,10 +96,12 @@ def main():
 
         if len(adj_nums) == 2:
             adj_nums = list(adj_nums)
-            total += positions_to_number(adj_nums[0], matrix) * positions_to_number(adj_nums[1], matrix)
+            total += positions_to_number(adj_nums[0], matrix) * positions_to_number(
+                adj_nums[1], matrix
+            )
 
     print("part 2:", total)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

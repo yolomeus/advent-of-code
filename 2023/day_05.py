@@ -5,23 +5,23 @@ from utils import read_file
 
 def parse_mapping(mapping_str: str):
     dest, src, length = map(int, mapping_str.split())
-    return {'src_range': range(src, src + length), 'dest': dest}
+    return {"src_range": range(src, src + length), "dest": dest}
 
 
 def parse_map(map_str: str):
-    mappings = map_str[1:].split('\n')
+    mappings = map_str[1:].split("\n")
     mappings = list(map(parse_mapping, mappings))
     return mappings
 
 
 def parse_data(data: str):
-    data = data.strip().split('\n\n')
+    data = data.strip().split("\n\n")
     seeds, maps = data[0], data[1:]
 
-    seeds = seeds.split(':')[1].split()
+    seeds = seeds.split(":")[1].split()
     seeds = list(map(int, seeds))
 
-    maps = [x.split(':')[1] for x in maps]
+    maps = [x.split(":")[1] for x in maps]
     maps = list(map(parse_map, maps))
     return seeds, maps
 
@@ -30,9 +30,9 @@ def get_location_number(seed, maps):
     next_value = seed
     for map_ in maps:
         for map_item in map_:
-            src_range = map_item['src_range']
+            src_range = map_item["src_range"]
             if next_value in src_range:
-                next_value = map_item['dest'] + next_value - src_range[0]
+                next_value = map_item["dest"] + next_value - src_range[0]
                 break
 
     return next_value
@@ -43,8 +43,10 @@ def shift_num(num: int, src_range: range, dest: int):
 
 
 def shift_range(range_: range, src_range: range, dest: int):
-    return range(shift_num(range_.start, src_range, dest),
-                 shift_num(range_.stop, src_range, dest))
+    return range(
+        shift_num(range_.start, src_range, dest),
+        shift_num(range_.stop, src_range, dest),
+    )
 
 
 def split_range(map_: list[dict[str, range]], range_: range):
@@ -55,7 +57,7 @@ def split_range(map_: list[dict[str, range]], range_: range):
         new_range = new_range_queue.pop(0)
         found_match = False
         for map_item in map_:
-            src_range, dest = map_item['src_range'], map_item['dest']
+            src_range, dest = map_item["src_range"], map_item["dest"]
             if new_range.start in src_range:
                 found_match = True
                 if new_range.stop > src_range.stop:
@@ -77,7 +79,7 @@ def map_range(range_: range, map_: list[dict[str, range]]) -> list[range]:
     for sub_range in sub_ranges:
         shifted = False
         for mapping in map_:
-            src_range, dest = mapping['src_range'], mapping['dest']
+            src_range, dest = mapping["src_range"], mapping["dest"]
             if sub_range.start in src_range:
                 mapped_ranges.append(shift_range(sub_range, src_range, dest))
                 shifted = True
@@ -91,11 +93,11 @@ def map_range(range_: range, map_: list[dict[str, range]]) -> list[range]:
 
 
 def main():
-    data = read_file('data/day_05.txt')
+    data = read_file("data/day_05.txt")
     seeds, maps = parse_data(data)
 
     location_numbers = list(map(partial(get_location_number, maps=maps), seeds))
-    print('part 1 :', min(location_numbers))
+    print("part 1 :", min(location_numbers))
 
     ranges = (range(x, x + y) for x, y in zip(seeds[0::2], seeds[1::2]))
     for map_ in maps:
@@ -104,8 +106,8 @@ def main():
         ranges = [y for x in ranges for y in x]
 
     # we can easily get the min of a range by selecting its lower bound
-    print('part 2 :', min(range_.start for range_ in ranges))
+    print("part 2 :", min(range_.start for range_ in ranges))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
