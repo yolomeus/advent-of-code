@@ -57,7 +57,7 @@ def split_range(map_: list[dict[str, range]], range_: range):
         new_range = new_range_queue.pop(0)
         found_match = False
         for map_item in map_:
-            src_range, dest = map_item["src_range"], map_item["dest"]
+            src_range = map_item["src_range"]
             if new_range.start in src_range:
                 found_match = True
                 if new_range.stop > src_range.stop:
